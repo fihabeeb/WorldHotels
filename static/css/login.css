@@ -1,0 +1,30 @@
+/*<!-- - 22066955 Fadil Idris -->*/
+    section {
+      font-size: 200%;
+      display: block;
+      margin-left: 40%;
+      margin-top: 1%;
+      font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+      color: black;
+    }
+
+    label
+    {
+        border-radius: 50%;
+    }
+
+    input
+    {
+      color: black;
+    }
+    @media only screen and (max-width: 450px) {
+      section {
+        font-size: 185%;
+        margin-left: 1%;
+      }
+    }
+    @media only screen and (max-height: 900px){
+      section {
+        margin-bottom: 18%;
+      }
+    }

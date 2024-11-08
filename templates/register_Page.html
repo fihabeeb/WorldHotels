@@ -1,0 +1,38 @@
+<!-- - 22066955 Fadil Idris -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+
+{% block content %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for ('static', filename = '/css/login.css')}}" />
+<body>
+  <section>
+    <form action="{{ url_for('register_Page') }}" method="POST">
+      <label for="email">Email:</label><br>
+      <input type="text" id="email" name="user_Email" required /><br /><br>
+      <label for="fname">First Name:</label><br />
+      <input type="text" id="fname" name="user_First_Name" required /><br /><br>
+      <label for="lname">Last Name:</label><br />
+      <input type="text" id="lname" name="user_Last_Name" required /><br /><br>
+      <label for="password">Enter your <br> Password: </label><br />
+      <input type="password" id="password" name="user_Password" required /><br />
+      <input type="submit" value="Register" /><br />
+    </form>
+  </section>
+</body>
+
+  {% block footer %}
+  <div id="page_Footer" style="
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;">
+    <div>&copy;2023 World Hotels. All rights reserved.</div>
+    <div>Terms of Service</div>
+    <div> Privacy Policy</div>
+  </div>
+  {% endblock %}
+  {% endblock %}
+
+</html>

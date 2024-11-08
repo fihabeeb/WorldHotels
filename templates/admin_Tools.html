@@ -1,0 +1,109 @@
+<!-- - 22066955 Fadil Idris -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+{% block content %}
+<form action="/admin_Tools/True" method="POST">
+    <div id="hotel_options_table">
+        <table border=1 id =hotel_options_table_content>
+            <tr>
+                <th> Update user passwords </th>
+                <th> Add hotels </th>
+                <th> Update hotels </th>
+                <th> Remove hotels </th>
+                <th> Generate Report </th>
+            </tr>
+            <tr>
+                <td> <input type="radio" name="bookingchange" value="update_user_pass" checked></td>
+                <td> <input type="radio" name="bookingchange" value="add_hotels"></td>
+                <td> <input type="radio" name="bookingchange" value="update_hotels"></td>
+                <td> <input type="radio" name="bookingchange" value="remove_hotels"></td>
+                <td> <input type="radio" name="bookingchange" value="report"></td>
+            </tr>
+        </table>
+        <br>
+<input type="submit" value="Enter" />
+    </div>
+
+</form>
+
+
+{% if todo == "update_user_pass" %}
+<p>Select User and Update their Password:</p>
+<form action="/admin_Tools/TrueA" method="POST">
+    <label for="email">Select User and Update their Password:</label><br>
+    <select name="pass_update_user_id" id="the_others" class="text_Box_2_text" style="appearance: auto;">
+        {% for row in resultset %}
+            <option value="{{row[1]}}">{{row[1]}}</option>
+        {% endfor %}
+    </select><br>
+    <label for="email">New Password:</label><br>
+    <input type="text" name="user_pass_update_new_password">
+    <input type="submit" value="Enter" />
+</form>
+{% elif todo == "add_hotels" %}
+<p>Add information to append:</p>
+<form action="/admin_Tools/TrueB" method="POST">
+    <label for="email">City Name:</label>
+    <input type="text" name="new_city"><br>
+
+    <label for="email">Standard Room Capacity:</label>
+    <input type="text" name="new_std_room_capacity"><br>
+
+    <label for="email">Double Room Capacity:</label>
+    <input type="text" name="new_double_room_capacity"><br>
+
+    <label for="email">Family Room Capacity:</label>
+    <input type="text" name="new_family_room_capacity"><br>
+
+    <label for="email">Peak Season Pricing:</label>
+    <input type="text" name="new_peak_season_pricing"><br>
+
+    <label for="email">Off Season Pricing:</label>
+    <input type="text" name="new_off_season_pricing"><br>
+
+    <input type="submit" value="Enter" />
+</form>
+{% elif todo == "update_hotels" %}
+<form action="/admin_Tools/TrueD" method="POST">
+    <label for="email">City Name:</label>
+    <input type="text" name="new_city"><br>
+
+    <label for="email">Standard Room Capacity:</label>
+    <input type="text" name="new_std_room_capacity"><br>
+
+    <label for="email">Double Room Capacity:</label>
+    <input type="text" name="new_double_room_capacity"><br>
+
+    <label for="email">Family Room Capacity:</label>
+    <input type="text" name="new_family_room_capacity"><br>
+
+    <label for="email">Peak Season Pricing:</label>
+    <input type="text" name="new_peak_season_pricing"><br>
+
+    <label for="email">Off Season Pricing:</label>
+    <input type="text" name="new_off_season_pricing"><br>
+
+    <input type="submit" value="Enter" />
+</form>
+{% elif todo == "remove_hotels" %}
+<form action="/admin_Tools/TrueC" method="POST">
+    <label for="email">Select User and Update their Password:</label><br>
+    <select name="city_to_delete" id="the_others" class="text_Box_2_text" style="appearance: auto;">
+        {% for row in cityset %}
+            <option value="{{row[0]}}"> {{row[0]}}</option>
+        {% endfor %}
+    </select><br>
+
+    <input type="submit" value="Enter" />
+</form>
+{% elif todo == "report" %}
+<p>Report: </p>
+<p>Total Earning Generated: {{total_earnings}}</p>
+
+{% endif %}
+
+
+
+{% endblock %}
+</html>

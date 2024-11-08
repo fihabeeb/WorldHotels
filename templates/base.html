@@ -1,0 +1,62 @@
+<!-- - 22066955 Fadil Idris -->
+<!DOCTYPE html>
+<html>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li style='color:green;'>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+{% if error %}
+<p class=error style='color:brown;'>
+    <strong>Error:</strong> {{ error }} </p>
+{% endif %}
+{% block header %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for ('static', filename = '/css/global_Formatting.css')}}" />
+    <link rel="stylesheet" href="{{ url_for ('static', filename = '/css/main_Page_Formatting.css')}}" />
+    <div id="top_Box">
+        <h1 id="wh_Logo" class="title_text">World Hotels</h1>
+        {% if usertype == 'admin' %}
+        <a href="{{ url_for('main_Page_Login', usertype=usertype, username = username)}}" id="sign-register-text" class="title_text">Home</a>
+        {% elif usertype == 'standard' %}
+        <a href="{{ url_for('main_Page_Login', usertype=usertype, username = username)}}" id="sign-register-text" class="title_text">Home</a>
+        {% else %}
+        <a href="{{ url_for('main_Page')}}" id="sign-register-text" class="title_text">Home</a>
+        {% endif %}
+
+        <a href="{{ url_for('about_Us')}}" id="sign-register-text" class="title_text">About us</a>
+        {% if usertype == 'admin' %}
+        <a href="{{ url_for('admin_Tools', checker = False)}}" id="sign-register-text" class="title_text">Admin Tools</a>
+        <a href="{{ url_for('booking_tools', forms = False)}}" id="sign-register-text" class="title_text">Booking Tools</a>
+        <a href="/logout/" id="sign-register-text" class="title_text">Logout</a>
+        <h3 style="color:green;" id="hello-user" class="title_text">Hello {{username}}</h3>
+        {% elif usertype == 'standard' %}
+        <a href="{{ url_for('booking_tools', forms=False)}}" id="sign-register-text" class="title_text">Booking Tools</a>
+        <a href="/logout/" id="sign-register-text" class="title_text">Logout</a>
+        <h3 style="color:green;" id="hello-user" class="title_text">Hello {{username}}</h3>
+        {% else %}
+        <a href="{{ url_for('login_Page')}}" id="sign-register-text" class="title_text">Sign in here</a>
+        <a href="{{ url_for('register_Page')}}" id="sign-register-text" class="title_text">Register here</a>
+        {% endif %}
+
+    </div>
+</head>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+<div id="page_Footer">
+    <div>&copy;2023 World Hotels. All rights reserved.</div>
+    <div>Terms of Service</div>
+    <div> Privacy Policy</div>
+</div>
+{% endblock %}
+
+</html>

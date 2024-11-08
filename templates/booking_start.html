@@ -1,0 +1,355 @@
+<!-- - 22066955 Fadil Idris -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+{% block content %}
+<link rel="stylesheet" href="{{ url_for ('static', filename = '/css/login.css')}}" />
+<form action="/booking_confirm/" method="POST">
+<p>
+    <div class="text_Box_2_text" id="the_others" style=" display: block; font-size: 150%;">
+      Selected City : {{lookupdata[0]}} <br />
+      <input type="hidden" name="acccity" id="acccity" value="{{lookupdata[0]}}" />
+      Check-in Date : {{lookupdata[1]}} <br />
+      <input type="hidden" name="checkindate" id="checkindate" value="{{lookupdata[1]}}" />
+      Check-out Date : {{lookupdata[2]}} <br />
+      <input type="hidden" name="checkoutdate" id="checkoutdate" value="{{lookupdata[2]}}" />
+
+      Off-Season Days : {{lookupdata[3]}} <br />
+      <input type="hidden" name="offseasondays" id="offseasondays" value="{{lookupdata[3]}}" />
+      Peak-Season Days : {{lookupdata[4]}} <br />
+      <input type="hidden" name="peakseasondays" id="peakseasondays" value="{{lookupdata[4]}}" />
+
+      No. of guests : {{lookupdata[5]}} <br />
+      <input type="hidden" name="noofguests" id="noofguests" value="{{lookupdata[5]}}" />
+      No. of children : {{lookupdata[6]}} <br />
+      <input type="hidden" name="noofchilds" id="noofchilds" value="{{lookupdata[6]}}" />
+      Discount based on booking in advance : {{lookupdata[8]}} <br />
+      <input type="hidden" name="daysdiscount" id="daysdiscount" value="{{lookupdata[8]}}" />
+    </div>
+  </p>
+
+  {% if room_type == "room_Size_Single" %}
+  {% if number_of_single_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1 id = hotel_options_table_content>
+      <tr>
+        <th> City </th>
+        <th> Single Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[2]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * lookupdata[9] ) }} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/> -->
+        <input type="hidden" name="roomtype" id="features" value="single" />
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (lookupdata[9]))}}" checked></td>
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+  {% elif room_type == "room_Size_Double" %}
+  {% if lookupdata[5] == "1" %}
+  {% if number_of_double_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Double Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[3]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (0.2 - lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (0.2 - lookupdata[9])}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="double" />
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% endif %}
+  {% if lookupdata[5] == "2" %}
+  {% if number_of_double_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Double Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[3]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (0.3 - lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (0.3 - lookupdata[9]))}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="double" />
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% endif %}
+  {% elif room_type == "room_Size_Family" %}
+  {% if number_of_family_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Family Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[4]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (0.5 - lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (0.5 - lookupdata[9]))}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="family" />
+
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% elif room_type == "room_Size_Any" %}
+  {% if number_of_single_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Single Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[2]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (lookupdata[9]))}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="single" />
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% else %}
+  <p>No rooms available</p>
+  {% endif %}
+
+
+  {% if lookupdata[5] == "1" %}
+  {% if number_of_double_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Double Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[3]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (0.2 - lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (0.2 - lookupdata[9]))}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="double" />
+
+
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% else %}
+  <p id="hotel_options_table">Specified Query is not available</p>
+  {% endif %}
+  {% if lookupdata[5] == "2" %}
+  {% if number_of_double_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Double Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[3]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (0.3 - lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (0.3 - lookupdata[9]))}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="double" />
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% else %}
+  <p id="hotel_options_table">Specified Query is not available</p>
+  {% endif %}
+  {% if number_of_family_rooms > 0 %}
+  <div id="hotel_options_table">
+    <table border=1>
+      <tr>
+        <th> City </th>
+        <th> Family Room Capacity </th>
+        <th> Peak Season Fare </th>
+        <th> Standared fare </th>
+        <th> Estimated fare </th>
+        <th> Select option </th>
+        <th> Features </th>
+      </tr>
+
+      {% for row in resultset %}
+      <tr>
+        <td> {{row[1]}} </td>
+        <td> {{row[4]}} </td>
+        <td> {{row[5]}} </td>
+        <td> {{row[6]}} </td>
+        <td> {{row[7] + (row[7] * (0.5 - lookupdata[9]))}} </td>
+        <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+          <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+          <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+          <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+        <td> <input type="radio" name="bookingchoice" value="{{row[7] + (row[7] * (0.5 - lookupdata[9]))}}" checked></td>
+        <input type="hidden" name="roomtype" id="features" value="family" />
+
+      </tr>
+
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% else %}
+  <p>No rooms available</p>
+
+
+
+
+
+
+  {% endif %}
+
+
+  <section>
+    <br />
+    <div>
+      <H2> Payment </H2>
+      Full name on card:<br />
+      <input type="text" name="cardname" id="cardname" /> <br />
+      Card number:<br />
+      <input type="number" name="cardnumber" id="cardnumber" max="9999999999999999" size="16" /> <br />
+      Card expiry:<br />
+      <input type="text" name="cardexpiry" id="cardexpiry" max="9999" size="4" /> <br />
+      CVV:<br />
+      <input type="number" name="cvv" id="cvv" max="999" size="3" /> <br />
+      <input type="submit" value="Confirm Booking and Payment" />
+      <br><br><br>
+    </div>
+  </section>
+</form>
+</p>
+
+
+
+
+
+
+{% endblock %}
+
+</html>

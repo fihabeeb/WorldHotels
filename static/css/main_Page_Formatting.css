@@ -1,0 +1,424 @@
+/*<!-- - 22066955 Fadil Idris -->*/
+html{
+    overflow: hidden;
+    height: 100%;
+    background-color: #edf2f4;
+}
+body{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+#main{
+    border: 1px solid black;
+    background-color: #2b2d42;
+}
+#main_Page_Search {
+    background-image: url('../photo/building_Photo_1.jpg');
+    border-bottom: 3px solid black;
+}
+
+
+#wh_Logo{
+    font-size: 485%;
+    margin-bottom: 1%;
+    margin-top: 0%;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    top: 50px;
+    transform: translate(-50%, -50%);
+}
+#top_Box{
+    color: white;
+    font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+    text-align: center;
+    background-color: #2b2d42;
+    height: 220px;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    border-bottom: 3px solid black;
+}
+
+#hotel_options_table{
+    color: white;
+    font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+    text-align: center;
+    background-color: #8d99ae;
+    border-bottom: 3px solid black;
+    font-size: 100%;
+    font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+    color: black;
+    border: 1px solid black;
+    border-radius: 28px;
+    justify-content: center;
+    align-items: center;
+}
+#hotel_options_table_content
+{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+header{
+    background-color: #2b2d42;
+}
+
+#hello-user{
+    font-size: 155%;
+    margin-bottom: 3%;
+    color: inherit;
+    color: white;
+    border: 2px solid black;
+    background-color: #2b2d42;
+    margin-left: 0;
+    margin-right: 0;
+ }
+
+#sign-register-text
+{
+    font-size: 155%;
+    margin-bottom: 3%;
+    color: inherit;
+    color: white;
+    border: 2px solid black;
+    background-color: #8d99ae;
+    margin-left: 0;
+    margin-right: 0;
+ }
+ #sign-register-text:hover ,  #sign-register-text:active{
+    background-color: #2b2d42;
+    color: white;
+ }
+.title_text{
+    margin-left: 3%;
+    text-decoration: none;
+}
+
+.text_Box_2 {
+    display: block;
+    overflow: auto;
+    margin-bottom: 3%;
+    font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+    color: black;
+    background-color: #edf2f4;
+    width: 60%;
+    margin-top: 50px;
+    border: 1px solid black;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 28px;
+    text-align: center;
+}
+
+
+
+.text_Box_2_text{
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+a:link,
+a:visited {
+    background-color: #2b2d42;
+    color: white;
+    border: 2px solid #2b2d42;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 28px;
+}
+
+a:hover,
+a:active {
+    background-color: #2b2d42;
+    color: powderblue;
+    border-radius: 28px;
+}
+
+h3{
+    background-color: #2b2d42;
+    color: white;
+    border: 2px solid #2b2d42;
+    padding: 10px 10PX;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 28px;
+}
+
+
+
+#submit_Button, #submit_Button:link{
+    margin-left: 2%;
+    margin-right: 9%;
+    font-size: 200%;
+    margin-bottom: 2.5%;
+    background-color: #2b2d42;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    top: 50%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    border-radius: 28px;
+    color:white;
+}
+
+#submit_Button:hover, #submit_Button:active{
+    background-color: #2b2d42;
+    color: white;
+}
+
+.drop_Down_Box{
+    width: 55px;
+    position: relative;
+}
+
+p{
+    font-size: 150%;
+    text-align-last: center;
+    margin-bottom: 3%;
+    font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+    margin-left: 14%;
+    margin-right: 14%;
+    color: #2b2d42;
+}
+#p_Outer_Box{
+    background-color: white;
+    display: block;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 28px;
+    padding: 0.2%;
+    height: auto;
+    margin-bottom: 5%;
+}
+
+#images{
+    color: white;
+    justify-content: center;
+    padding: 0.8;
+    margin-bottom: 4%;
+    border-radius: 30px;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#room_List{
+    font-size: 80%;
+}
+
+#page_Footer{
+    color: white;
+    font-family: Trebuchet MS, Tahoma, Verdana, sans-serif;
+    text-align: center;
+    background-color: #2b2d42;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    border-top: 3px solid black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#the_others {
+    padding: 10px;
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 800px)  {
+    #top_Box{
+        height: 400px;
+        width: 100%;
+        position: relative;
+    }
+    #wh_Logo{
+        font-size: 50px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 12%;
+    }
+    .text_Box_2{
+        width: 70%;
+        font-size: 120%;
+    }
+    #the_others {
+        padding: 10px;
+        font-size: 16px;
+        width: 90%;
+    }
+    .text_Box_2_text{
+        margin-left: 0%;
+    }
+}
+
+    @media only screen and (max-width: 450px) {
+        #top_Box{
+            height: 360px;
+            width: 100%;
+            position: relative;
+        }
+        .text_Box_2{
+            width: 60%;
+        }
+        #wh_Logo{
+            font-size: 55px;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 15%;
+        }
+        #submit_Button{
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .text_Box_2_text{
+            display: inline;
+            margin-left: 0%;
+            text-align: center;
+        }
+        #the_others {
+            padding: 10px;
+            font-size: 11px;
+            width: 70%;
+        }
+        #p_Outer_Box{
+            background-color: #2b2d42;
+            display: block;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 28px;
+            padding: 0.2%;
+            height: auto;
+            font-size: 80%;
+            margin-bottom: 25%;
+
+        }
+
+  }
+  @media only screen and (max-width: 330px) {
+    #top_Box{
+        height: 380px;
+        width: 100%;
+        position: relative;
+    }
+    #wh_Logo{
+        font-size: 50px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 12%;
+    }
+    .text_Box_2{
+        width: 70%;
+    }
+    #the_others {
+        padding: 10px;
+        font-size: 11px;
+        width: 70%;
+    }
+    .text_Box_2_text{
+        display: inline;
+        margin-left: 0%;
+        text-align: center;
+    }
+}
+
+
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=date],
+input[type=password]{
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-left: 2px;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #d90429;
+    border-radius: 4px;
+    background-color: #edf2f4;
+    color: black;
+
+  }
+
+
+input[type=text],
+input[type=email],
+input[type=password]{
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-left: 2px;
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #d90429;
+    border-radius: 4px;
+    background-color: #edf2f4;
+    color: black;
+  }
+
+
+
+
+
+
+
+
+
+  @media all and (max-width: 760px)
+  {
+
+  table {
+  display: block;
+  }
+
+  table caption {
+  display: inline-block;
+  }
+
+  table tr {
+  display: list-item;
+  border: none;
+  border-top: solid thin red;
+  }
+
+  table th {
+  display: inline-block;
+  border: solid thin gray;
+  margin-right: 0.2rem;
+  }
+
+  table td {
+  display: inline-block;
+  border: solid thin gray;
+  margin-right: 0.2rem;
+  }
+
+  }

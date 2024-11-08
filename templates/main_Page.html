@@ -1,0 +1,166 @@
+<!-- - 22066955 Fadil Idris -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+    {% block content %}
+<head>
+    <script>
+        function user_Check_In_DateFunction() {
+            document.getElementById("submit_Button").disabled = true;
+            document.getElementById("user_Check_Out_Date").disabled = true;
+            var today = new Date().setHours(0,0,0,0);
+            var user_Check_In_Date = Date.parse(document.getElementById("user_Check_In_Date").value);
+            var user_Check_In_Date = new Date(user_Check_In_Date).setHours(0,0,0,0);
+
+            var user_Check_Out_Date = Date.parse(document.getElementById("user_Check_Out_Date").value);
+            var user_Check_Out_Date = new Date(user_Check_Out_Date).setHours(0,0,0,0);
+
+            if (user_Check_In_Date < today) {
+                alert('Check in date should not be in past')
+                document.getElementById("user_Check_In_Date").value = new Date().setHours(0,0,0,0);
+                document.getElementById("user_Check_In_Date").style.border='1px solid red';
+                document.getElementById("user_Check_In_Date").style.focus();
+                return false;
+            }
+            else if (user_Check_In_Date > user_Check_Out_Date){
+                alert('Check out date should be after Check in date')
+                document.getElementById("user_Check_In_Date").value = new Date().setHours(0,0,0,0);
+                document.getElementById("user_Check_In_Date").style.border='1px solid red';
+                document.getElementById("user_Check_In_Date").style.focus();
+                return false;
+            }
+            else if ((user_Check_In_Date - today) / (1000 * 60 * 60 * 24) > 90)
+            {
+                alert('Cannot book more than 3 months in advance')
+                document.getElementById("user_Check_In_Date").value = new Date().setHours(0,0,0,0);
+                document.getElementById("user_Check_In_Date").style.border='1px solid red';
+                document.getElementById("user_Check_In_Date").style.focus();
+                return false;
+            }
+            else {
+                document.getElementById("user_Check_In_Date").style.border='1px solid';
+                document.getElementById("user_Check_Out_Date").disabled = false;
+                return true;
+            }
+        }
+        function user_Check_Out_DateFunction() {
+            document.getElementById("submit_Button").disabled = true;
+            var user_Check_In_Date = Date.parse(document.getElementById("user_Check_In_Date").value);
+            var user_Check_In_Date = new Date(user_Check_In_Date).setHours(0,0,0,0);
+            var user_Check_Out_Date = Date.parse(document.getElementById("user_Check_Out_Date").value);
+            var user_Check_Out_Date = new Date(user_Check_Out_Date).setHours(0,0,0,0);
+            if (user_Check_In_Date > user_Check_Out_Date) {
+                alert('Check out date should be after check in date')
+                document.getElementById("user_Check_Out_Date").value = new Date().setHours(0,0,0,0);
+                document.getElementById("user_Check_Out_Date").style.border='1px solid red';
+                document.getElementById("user_Check_Out_Date").style.focus();
+                return false;
+            }
+            else {
+                dateDifference = Math.abs(user_Check_Out_Date - user_Check_In_Date);
+                daysDifference = Math.ceil(dateDifference / (1000 * 60 * 60 * 24));
+                if(daysDifference > 30)
+                {
+                    alert('Cannot Book more than 30 days at a time \nPlease make 2 seperate bookings.')
+                    document.getElementById("user_Check_Out_Date").value = new Date().setHours(0,0,0,0);
+                    document.getElementById("user_Check_Out_Date").style.border='1px solid red';
+                    document.getElementById("user_Check_Out_Date").style.focus();
+                    return false;
+                }
+                else
+                {
+                        document.getElementById("user_Check_Out_Date").style.border='1px solid';
+                        document.getElementById("submit_Button").disabled = false;
+                        return true;
+                }
+            }
+        }
+
+    </script>
+</head>
+ <!-- Image -->
+<body style="
+background-color: #2b2d42;">
+    <div id="main_Page_Search">
+        <form action = "{{ url_for('booking_start') }}" method="POST" onsubmit="return user_Check_Out_DateFunction()">
+            <br><br><br>
+            <div class="text_Box_2">
+                <label for="cities" class="text_Box_2_text"></label>
+                <select name="city_list" id="the_others" class="text_Box_2_text" style="appearance: auto;">
+                    {% for row in resultset %}
+                        <option value="{{row[0]}}"> {{row[0]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+                <div class="text_Box_2">
+                <label for="in_Date" class="text_Box_2_text">Check in date:
+                </label>
+                <input type="date" id = "user_Check_In_Date" name="user_Check_In_Date" class="text_Box_2_text" onchange="return user_Check_In_DateFunction()" required /><br>
+                <label for="out_Date" class="text_Box_2_text">Check out date:
+                </label>
+                <input type="date" id = "user_Check_Out_Date" name="user_Check_Out_Date" class="text_Box_2_text" onchange="return user_Check_Out_DateFunction()" required disabled />
+            </div>
+            <div class="text_Box_2">
+                <label for=" num_Adults" class="text_Box_2_text">Number of adults: </label>
+                <input type="number" id="the_others" name="num_Adults" value="1" min="1" class="text_Box_2_text">
+                <label for="num_Children" class="text_Box_2_text">Number of children: </label>
+                <input type="number" id="the_others" name="num_Children" value="0" min="0" class="text_Box_2_text">
+            </div>
+            <div class="text_Box_2" >
+                <label for="room_List" class="text_Box_2_text"></label>
+                <select name="rooms" id="the_others" class="text_Box_2_text">
+                    <option value="room_Size_Any">Select Room Type</option>
+                    <option value="room_Size_Any">Show all available options</option>
+                    <option value="room_Size_Single">Standard Room</option>
+                    <option value="room_Size_Double">Double Room</option>
+                    <option value="room_Size_Family">Family Sized Room</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Search" id="submit_Button"><br />
+        </form>
+    </div>
+    <div id="p_Outer_Box">
+    <p>
+        Image by <a href="https://pixabay.com/users/nordseher-6327161/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6862159">Ingo Jakubke</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6862159">Pixabay</a>
+        </p><br>
+    </div>
+</body>
+
+<div id="p_Outer_Box">
+    <p>Welcome to World Hotels, where luxury meets comfort and sophistication blends seamlessly with convenience.
+        Nestled
+        in
+        prime
+        locations across the globe, our collection of boutique hotels offers an unparalleled experience tailored to the
+        discerning traveler.
+
+        Indulge in our elegant accommodations designed to cater to your every need, whether you're here for business or
+        leisure.
+        Each of our rooms exudes a fusion of modern design and timeless style, ensuring a restful and rejuvenating stay.
+
+        At World Hotels, we take pride in our commitment to exceptional service. Our dedicated staff is here to ensure
+        your
+        every
+        request is met, whether it's arranging for personalized experiences, recommending local attractions, or
+        providing
+        unparalleled dining options that celebrate local and international cuisine.
+
+        From the moment you step into our lobby to the time you retire to the comfort of your room, expect nothing but
+        the
+        finest in amenities and hospitality. Our state-of-the-art facilities, including fitness centers, spas, and
+        meeting
+        spaces, are meticulously designed to enhance your overall stay.
+
+        Explore the surrounding beauty of the area or simply unwind in our oasis of tranquility. World Hotels is not
+        just a
+        place
+        to stay; it's an experience to cherish—a home away from home.
+
+        We look forward to hosting you and creating lasting memories during your stay at World Hotels.</p>
+</div>
+
+{% endblock %}
+
+
+</html>

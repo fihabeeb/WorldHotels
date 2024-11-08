@@ -1,0 +1,74 @@
+<!-- - 22066955 Fadil Idris -->
+
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html>
+{% block content %}
+<div>
+    <p>Welcome {{username}}, you are a {{usertype}} user.</p>
+    <p>Here are all your bookings:</p>
+
+    <form action="/booking_tools_1/" method="POST">
+        <div id="hotel_options_table">
+            <table border=1 id = hotel_options_table_content>
+                <tr>
+                    <th> Check In Date </th>
+                    <th> Check Out Date </th>
+                    <th> Status </th>
+                    <th> Update </th>
+                    <th> Delete </th>
+                </tr>
+
+                {% for row in resultset %}
+                <tr>
+                    <td> {{row[2]}} </td>
+                    <td> {{row[3]}} </td>
+                    <td> {{row[5]}} </td>
+                    <!--<input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+                <input type="hidden" name="accaddress" id="accaddress" value="{{row[5]}}"/>
+                <input type="hidden" name="smoking" id="smoking" value="{{row[2]}}"/>
+                <input type="hidden" name="features" id="features" value="{{row[3]}}"/> -->
+                    <td> <input type="radio" name="bookingchange" value="update" checked></td>
+                    <td> <input type="radio" name="bookingchange" value="delete"></td>
+                    <input type="hidden" name="deleteconfirmation" value="false" />
+                    <input type="hidden" name="id" value="{{row[0]}}" />
+                    <input type="hidden" name="checindatethang" value="{{row[2]}}" />
+                    <input type="hidden" name="checkoutdatethang" value="{{row[3]}}" />
+                    <input type="hidden" name="hotel_name" value="{{row[4]}}" />
+
+                </tr>
+
+                {% endfor %}
+            </table>
+            <input type="submit" value="Enter" />
+        </div>
+</div>
+
+</form>
+
+{% if form_action == "update" %}
+<form action="/update_step/" method="POST">
+    <div class="text_Box_2">
+        <label for="in_Date" class="text_Box_2_text">Check in date:
+        </label>
+        <input type="date" name="user_Check_In_Date" class="text_Box_2_text" value={{checkindateval}}><br>
+        <label for="out_Date" class="text_Box_2_text">Check out date:
+        </label>
+        <input type="date" name="user_Check_Out_Date" class="text_Box_2_text" value={{checkoutdateval}}>
+        <input type="hidden" name="tool_table_id" value="{{tool_table_id}}" />
+        <input type="hidden" name="hotel_name" value="{{hotel_name}}" />
+        <input type="submit" value="Confirm Updating Selection" />
+    </div>
+</form>
+{% elif form_action == "delete" %}
+<form action="/booking_confirm/" method="POST">
+    <div id="hotel_options_table">
+        <input type="hidden" name="deleteconfirmation" value="true" />
+    </div>
+    </div>
+    <input type="submit" value="Confirm Deleting Selection" />
+</form>
+{% endif %}
+{% endblock %}
+
+</html>

@@ -1,0 +1,25 @@
+<!-- - 22066955 Fadil Idris -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+  {% block content %}
+
+
+
+  <!--[journeyid, departcity, arrivalcity, outdate, returndate, adultseats, childseats, totalfare, bookingid, deptTime, arrivTime]-->
+  <p>
+  Receipt:<br><br>
+  Billings ID: {{resultset[10]}} <br/>
+  City : {{resultset[1]}} <br/>
+  Check-in Date : {{resultset[2]}} <br/>
+  Check-out Date : {{resultset[3]}} <br/>
+  No. of nights : {{resultset[9]}} <br/>
+  No. of guests : {{resultset[4]}} <br/>
+  Total Fare : {{resultset[5]}} <br/>
+  Payment: Card ending with ****** {{cardnumber}} <br/>
+  <input type="hidden" name="totalfare" value="{{resultset[5]}}" />
+  <input type="hidden" name="bookingid" value="{{resultset[10]}}" />
+  </p>
+
+  {% endblock %}
+</html>

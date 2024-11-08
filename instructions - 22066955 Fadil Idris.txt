@@ -1,0 +1,15 @@
+Index Page any of the following:
+http://127.0.0.1:13000/home
+http://127.0.0.1:13000/
+http://127.0.0.1:13000/index
+
+Login used in video:
+Admin:
+fihabeeb006@gmail.com
+pass:
+123
+
+customer
+jack@email.com
+pass:
+987

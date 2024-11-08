@@ -1,0 +1,109 @@
+<!-- !22066955 -->
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+{% block content %}
+
+
+{% if payus == 0 %}
+<p>Net Update Fare: {{total_new_fare}}<br></p>
+<p>
+
+    Amount previously payed: {{old_price}}<br>
+    Amount Required after update:  {{fare}} <br></p>
+<section>
+<form action="/booking_tools/True/null" method="POST">
+    <input type="hidden" name="tool_table_id" value="{{tool_table_id}}" />
+    <input type="submit" value="Proceed" />
+</form>
+</section>
+
+
+
+
+{% elif payus == 2 %}
+<p>Net Update Refund: {{total_new_fare}}<br></p>
+<p>
+
+    Amount previously payed: {{old_price}}<br>
+    Amount Required after update:  {{fare}} <br></p>
+<form action="/update_step_4/" method="POST">
+    <input type="submit" value="Proceed" />
+    <input type="hidden" name="refund_activate" value="969" />
+    <input type="hidden" name="fare_value" value="{{total_new_fare}}" />
+    <input type="hidden" name="tool_table_id" value="{{tool_table_id}}" />
+    <input type="hidden" name="newcheckin" value="{{checkindate}}" />
+    <input type="hidden" name="newcheckout" value="{{checkoutdate}}" />
+</form>
+
+
+
+
+{% elif payus == 1 %}
+<p> Update Fare: {{total_new_fare}}<br></p>
+<p>
+
+    Amount previously payed: {{old_price}}<br>
+    Amount Required after update:  {{fare}} <br></p>
+<form action="/update_step_2" method="POST">
+    <section>
+        <br />
+        <div>
+            <H2> Payment </H2>
+            Full name on card:
+            <input type="text" name="cardname" id="cardname" /> <br />
+            Card number:
+            <input type="number" name="cardnumber" id="cardnumber" max="9999999999999999" size="16" /> <br />
+            Card expiry:
+            <input type="text" name="cardexpiry" id="cardexpiry" max="9999" size="4" /> <br />
+            CVV:
+            <input type="number" name="cvv" id="cvv" max="999" size="3" /> <br />
+            <input type="hidden" name="fare_value" value="{{total_new_fare}}" />
+            <input type="hidden" name="extra_pay" value="969" />
+            <input type="hidden" name="newcheckin" value="{{checkindate}}" />
+            <input type="hidden" name="newcheckout" value="{{checkoutdate}}" />
+            <input type="hidden" name="tool_table_id_2" value={{tool_table_id}} />
+            <input type="submit" value="Proceed" />
+
+        </div>
+    </section>
+</form>
+
+
+{% elif payus == 10 %}
+<p>Days left until checkin: {{dayscheckin}}<br></p>
+<p>Amount to be refunded: {{refund_amount}}<br></p>
+
+<form action="/update_step_5/" method="POST">
+    <input type="hidden" name="tool_table_id" value="{{tool_table_id}}" />
+    <input type="hidden" name="refund_amount" value="{{refund_amount}}" />
+    <input type="hidden" name="action" value="all" />
+    <input type="submit" value="Proceed" />
+</form>
+
+{% elif payus == 11 %}
+<p>Days left until checkin: {{dayscheckin}}<br></p>
+<p>Amount to be refunded: {{refund_amount}}<br></p>
+
+<form action="/update_step_5/" method="POST">
+    <input type="hidden" name="tool_table_id" value="{{tool_table_id}}" />
+    <input type="hidden" name="refund_amount" value="{{refund_amount}}" />
+    <input type="hidden" name="action" value="half" />
+    <input type="submit" value="Proceed" />
+</form>
+
+{% elif payus == 12 %}
+<p>Days left until checkin: {{dayscheckin}}<br></p>
+<p>Amount to be refunded: {{refund_amount}}<br></p>
+
+<form action="/update_step_5/" method="POST">
+    <input type="hidden" name="tool_table_id" value="{{tool_table_id}}" />
+    <input type="hidden" name="refund_amount" value="{{refund_amount}}" />
+    <input type="hidden" name="action" value="none" />
+    <input type="submit" value="Proceed" />
+</form>
+
+{% endif %}
+{% endblock %}
+
+</html>

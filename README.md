@@ -23,14 +23,14 @@ to make the development process more efficient.
 
 The next part of the project dealt with the database side of things. We needed a database to store the information for all the hotels, and also the customers and the administrators. Also stored in the database is payment records. The database contains 5 tables:
 
-    1. User Information:
-        - User Information ID
-        - Name
-        - Surname
-        - Email
-        - PhoneNumber
-        - User_Password
-        - Privilages
+    User Information:
+        ..* User Information ID
+        ..* Name
+        ..* Surname
+        ..* Email
+        ..* PhoneNumber
+        ..* User_Password
+        ..* Privilages
 
 
 ## How to install??

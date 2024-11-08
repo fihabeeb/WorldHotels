@@ -16,4 +16,5 @@ and CSS classes and IDs
     margin-top: 10px;
     margin-bottom: 10px;
 }
-``` to make the development process more efficient.
+```
+to make the development process more efficient.

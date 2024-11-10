@@ -32,4 +32,36 @@ The next part of the project dealt with the database side of things. We needed a
 
 ## Step 3 - Back-End Development using Python Flask
 
-Now that the front end (HTML and CSS) and the Database has been made, what's left is the backend to put those two together but to also add more functionality. Our module required us to use Python Flask.
+Now that the front end (HTML and CSS) and the Database has been made, what's left is the backend to put those two together but to also add more functionality. Our course required us to use Python Flask for this project.
+
+Listed below are the libraries I used for this project. Some examples are passlib.hash for encrypting passwords.
+
+```python
+import mysql.connector, dbconnect
+from flask import Flask, session, render_template, request, url_for, redirect, flash
+from passlib.hash import sha256_crypt
+from datetime import datetime, timedelta, date
+from functools import wraps
+```
+
+Other things I would like to highlight are the use of wrappers, which is essentially a condition to check if the user is eligible to view the webpage they are looking to open.
+
+
+```
+@login_required
+@admin_required
+```
+
+## Java Script
+
+There is some limited use of JavaScript, but nothing too notable. I used it for things like checking for valid input dates when making a booking.
+
+
+## Self Assessment:
+
+- The main thing I have to improve on is the general front-end design. It's very basic looking.
+- Another thing is writing better algorithms over the nested loops in the backend code where possible. This would increase the website's performance.
+- There are also some bugs present that need fixing.
+
+
+In the end, this project was graded a 93, so I am proud of it.
